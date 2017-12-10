@@ -1,0 +1,210 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+cnoremap <silent> <F5> :execute ":bprevious!"
+inoremap <silent> <F5> :execute ":bprevious!"
+cnoremap <silent> <C-S-Tab> :execute ":bprevious!"
+inoremap <silent> <C-S-Tab> :execute ":bprevious!"
+cnoremap <silent> <F6> :execute ":bnext!"
+inoremap <silent> <F6> :execute ":bnext!"
+cnoremap <silent> <C-Tab> :execute ":bnext!"
+inoremap <silent> <C-Tab> :execute ":bnext!"
+map! <F11> :call P4Revert()
+map! <F12> :call P4Edit()
+map  va>d
+map [21~ :call Test()
+map FF !Gperl -MText::Autoformat -e 'autoformat{all=>1}'
+map Q gq
+vmap S :perldo s/([A-Z])/"_".lc($1)/eg
+nmap <silent> \qq :QuickSession
+map ^[[21~ :call Integrate()
+nmap gx <Plug>NetrwBrowseX
+vnoremap p :let current_reg = @"gvs=current_reg
+vmap zf mz:'<O//{{{'>o// }}}`z?{{{A 
+map <F4> :w:!perl -w %
+map <F3> :w:make
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetBrowseX(expand("<cWORD>"),0)
+map <F5> :w:!podchecker %
+noremap <silent> <C-S-Tab> :execute ":bprevious!"
+noremap <silent> <F6> :execute ":bnext!"
+noremap <silent> <C-Tab> :execute ":bnext!"
+map <silent> <F1> :call BufferList()
+map <F8> :call Make_Session()
+map <C-Right> :bn
+map <C-Left> :bp
+map!  <br />
+map!  <p>
+map!  &nbsp;
+cabbr hr i<a href=></a>F>
+cabbr mikify %s/->/ -> /g
+cabbr unmikify %s/ -> /->/g
+cabbr rhelp !cd $HOME/.vim/doc && makehelp.pl > erick.txt :helpt $HOME/.vim/doc
+cabbr ht helpt $HOME/.vim/doc
+cabbr snip e $HOME/.vim/doc/snippet.ini
+cabbr ebash e $HOME/.bashrc
+cabbr rc e $HOME/.vimrc
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set backspace=2
+set cmdheight=2
+set grepprg=grep\ -ni
+set history=50
+set hlsearch
+set incsearch
+set makeprg=perl\ -Wc\ %
+set pastetoggle=<F8>
+set ruler
+set shell=bash
+set shiftwidth=4
+set showmatch
+set tabstop=4
+set visualbell
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/dev/fidcredit/spgUtils/trunk/src/web/templates
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +6 reports/index.tt
+badd +60 common/header.tt
+badd +7 index.tt
+badd +1 common/footer.tt
+badd +40 reports/pnl/index.tt
+badd +29 reports/nat/index.tt
+badd +2 common/blank.tt
+badd +13 common/errors.tt
+badd +8 reports/pnl/get_report.tt
+badd +29 reports/historical.tt
+badd +42 reports/pnl/historical.tt
+badd +14 reports/nat/historical.tt
+badd +42 markit/historical.tt
+badd +24 markit/index.tt
+args reports/index.tt
+edit reports/nat/historical.tt
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal noarabic
+setlocal autoindent
+setlocal autoread
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=<!--%s-->
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'html'
+setlocal filetype=html
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+set foldexpr=SF_SetFolds()
+setlocal foldexpr=SF_SetFolds()
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=expr
+setlocal foldmethod=expr
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=HtmlIndentGet(v:lnum)
+setlocal indentkeys=o,O,*<Return>,<>>,{,}
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keymap=
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'html'
+setlocal syntax=html
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 33 - ((32 * winheight(0) + 28) / 57)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+33
+normal! 02l
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . s:sx
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

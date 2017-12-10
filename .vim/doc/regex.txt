@@ -1,0 +1,36 @@
+*regex.txt*                     Perl Snippets                       6 Jul 2005
+
+Author: Erick Bourgeois <erick.bourgeois@morganstanley.com>
+
+[ Regexes ]                                                               
+|backreferences|            1. Pattern Match Vars                              
+==============================================================================
+******************************************************************************
+                                                                   [ Regexes ]
+1. Pattern Match Vars                               *backreferences* *regexes*
+
+
+$+ => Returns the last parenthesized pattern match
+
+$& => Returns the entire matched string
+
+$` => Returns everything before the matched string
+
+$' => Returns everything after the matched string 
+
+.*? => match as many up until 0 or 1 characters after
+
+E.g.
+
+$_ = "blah: foo:"
+/(.*?)/
+print $1; # this will output "blah"
+
+Patterns with captures are often used in list context to populate a list of
+values, since the pattern is smart enough to return the captured substrings as
+a list:
+($FirstPart, $SecondPart, $ThirdPart) = ($TestString =~ m/(.*)(this)(.*)/);
+
+($first, $last)        =  /^(\w+) (\w+)$/;
+($full, $first, $last) =  /^((\w+) (\w+))$/;
+==============================================================================

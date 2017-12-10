@@ -1,0 +1,261 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <silent> <S-Tab> =BackwardsSnippet()
+nnoremap <silent>  :TmuxNavigateLeft
+xnoremap 	 s:let g:snipmate_content_visual=getreg( 1 )
+snoremap <silent> 	 i<Right>=TriggerSnippet()
+nnoremap <silent> <NL> :TmuxNavigateDown
+nnoremap <silent>  :TmuxNavigateUp
+nnoremap <silent>  :TmuxNavigateRight
+noremap  :NERDTreeToggle
+nnoremap <silent>  :CtrlP
+snoremap  b<BS>
+nnoremap <silent>  :TmuxNavigatePrevious
+snoremap % b<BS>%
+snoremap ' b<BS>'
+vmap <silent> ,e <Plug>CamelCaseMotion_e
+vmap <silent> ,b <Plug>CamelCaseMotion_b
+vmap <silent> ,w <Plug>CamelCaseMotion_w
+omap <silent> ,e <Plug>CamelCaseMotion_e
+omap <silent> ,b <Plug>CamelCaseMotion_b
+omap <silent> ,w <Plug>CamelCaseMotion_w
+nmap <silent> ,e <Plug>CamelCaseMotion_e
+nmap <silent> ,b <Plug>CamelCaseMotion_b
+nmap <silent> ,w <Plug>CamelCaseMotion_w
+map <A-0x36> :b6
+map <A-0x35> :b5
+map <A-0x34> :b4
+map <A-0x33> :b3
+map <A-0x32> :b2
+map <A-^[1> :b1
+map K mqgqap`q
+snoremap U b<BS>U
+snoremap \ b<BS>\
+nmap <silent> \qq :QuickSession
+noremap \N :NERDTreeTabsToggle
+snoremap ^ b<BS>^
+snoremap ` b<BS>`
+nmap gx <Plug>NetrwBrowseX
+vmap <silent> i,e <Plug>CamelCaseMotion_ie
+vmap <silent> i,b <Plug>CamelCaseMotion_ib
+vmap <silent> i,w <Plug>CamelCaseMotion_iw
+omap <silent> i,e <Plug>CamelCaseMotion_ie
+omap <silent> i,b <Plug>CamelCaseMotion_ib
+omap <silent> i,w <Plug>CamelCaseMotion_iw
+vmap zf mz:'<O//{{{'>o// }}}`z?{{{A 
+snoremap <Left> bi
+snoremap <Right> a
+snoremap <BS> b<BS>
+snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+nmap <silent> <F2> :MBEToggle
+nmap <silent> <F1> :CtrlPBuffer
+map <F12> :call Fio_Grep()
+map <F8> :call Make_Session()
+inoremap <silent> 	 u=TriggerSnippet()
+inoremap <silent> 	 =ShowAvailableSnips()
+cabbr ln e $HOME/twiki/.outline.twiki
+cabbr ss source ~/sessions/scratch
+cabbr te e $HOME/.vim/dev/test.vim
+cabbr rc e $HOME/.vimrc
+abbr shebang #!/ms/dist/perl5/bin/perl5.14use strict;use warnings;use v5.014;
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set autoread
+set background=dark
+set backspace=2
+set cindent
+set cinkeys=0{,0},0),!^F,o,O,e
+set cinoptions=t0,+4,(0,)60,u0,*100,j1
+set cinwords=if,else,while,do,for,elsif,sub,fi
+set comments=n:#
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set noequalalways
+set expandtab
+set grepprg=grep\ -i
+set hlsearch
+set ignorecase
+set incsearch
+set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,:
+set iskeyword=@,48-57,_,192-255,:
+set laststatus=2
+set mouse=n
+set omnifunc=syntaxcomplete#Complete
+set pastetoggle=<F8>
+set ruler
+set runtimepath=~/.vim/bundle/ctrlp.vim,~/.vim,~/.vim/bundle/autofold,~/.vim/bundle/bufferlist,~/.vim/bundle/ctrlp,~/.vim/bundle/fold_digest,~/.vim/bundle/minibufexpl.vim-master,~/.vim/bundle/nerdtree,~/.vim/bundle/tlib_vim,~/.vim/bundle/twiki,~/.vim/bundle/vim-addon-mw-utils,~/.vim/bundle/vim-colorschemes-master,~/.vim/bundle/vim-snipmate,~/.vim/bundle/vim-tmux-navigator-master,~/.vim/bundle/vim-twiki,~/.vim/bundle/vim-vividchalk-master,~/.vim/bundle/xterm-color-table.vim-master,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vimfiles,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vim74,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vimfiles/after,~/.vim/bundle/vim-snipmate/after,~/.vim/after
+set shell=bash
+set shiftwidth=4
+set showmatch
+set smartcase
+set tabstop=4
+set updatetime=1500
+set visualbell
+set wildmenu
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/dev/virtual.vto/virtual/vto/master/src
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +25 lib/perl5/AFS/Meta.pm
+badd +16 lib/perl5/AFS/Project.pm
+badd +9 lib/perl5/AFS/Release.pm
+badd +6 lib/perl5/VTO/AnsiLog.pm
+badd +5 lib/perl5/VTO/Turnover.pm
+badd +10 lib/perl5/VTO/Turnover/Command.pm
+badd +77 lib/perl5/VTO/Turnover/Config.pm
+badd +517 lib/perl5/VTO/Turnover/Exec.pm
+badd +312 lib/perl5/VTO/Turnover/Exec/AFS.pm
+badd +102 lib/perl5/VTO/Turnover/Exec/Autosys.pm
+badd +1 lib/perl5/VTO/Turnover/Exec/CMD.pm
+badd +11 lib/perl5/VTO/Turnover/Exec/Checkpoint.pm
+badd +263 lib/perl5/VTO/Turnover/Exec/Database.pm
+badd +9 lib/perl5/VTO/Turnover/Exec/Farm.pm
+badd +1 lib/perl5/VTO/Turnover/Exec/TAI.pm
+badd +12 lib/perl5/VTO/Turnover/Exec/Zapp.pm
+args lib/perl5/AFS/Meta.pm lib/perl5/AFS/Project.pm lib/perl5/AFS/Release.pm lib/perl5/VTO/AnsiLog.pm lib/perl5/VTO/Turnover.pm lib/perl5/VTO/Turnover/Command.pm lib/perl5/VTO/Turnover/Config.pm lib/perl5/VTO/Turnover/Exec.pm lib/perl5/VTO/Turnover/Exec/AFS.pm lib/perl5/VTO/Turnover/Exec/Autosys.pm lib/perl5/VTO/Turnover/Exec/CMD.pm lib/perl5/VTO/Turnover/Exec/Checkpoint.pm lib/perl5/VTO/Turnover/Exec/Database.pm lib/perl5/VTO/Turnover/Exec/Farm.pm lib/perl5/VTO/Turnover/Exec/TAI.pm lib/perl5/VTO/Turnover/Exec/Zapp.pm
+edit lib/perl5/VTO/Turnover/Config.pm
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+edit lib/perl5/VTO/Turnover/Config.pm
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),!^F,o,O,e
+setlocal cinoptions=t0,+4,(0,)60,u0,*100,j1
+setlocal cinwords=if,else,while,do,for,elsif,sub,fi
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=[^A-Za-z_]
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'perl'
+setlocal filetype=perl
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+set foldexpr=SF_SetFolds()
+setlocal foldexpr=SF_SetFolds()
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=expr
+setlocal foldmethod=expr
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=crqol
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=\\<\\(use\\|require\\)\\>
+setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'->*','',''),'$','.pm','')
+setlocal indentexpr=GetPerlIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=,0),0],0=or,0=and
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,:
+setlocal keywordprg=perldoc\ -f
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=.,/usr/include,,,/ms/dist/perl5/VERS/5.14.2-0-core/lib/perl5,/ms/dist/perl5/VERS/5.14-core/lib/perl5,//ms/dist/perl5/PROJ/core/5.14.2-0/.exec/ia32.linux.2.6.glibc.2.3/lib/perl5,,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'perl'
+setlocal syntax=perl
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+28
+normal! zo
+126
+normal! zo
+172
+normal! zo
+192
+normal! zo
+let s:l = 163 - ((0 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+163
+normal! 013|
+lcd ~/dev/virtual.vto/virtual/vto/master/src/lib/perl5/VTO/Turnover
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

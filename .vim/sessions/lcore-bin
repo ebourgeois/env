@@ -1,0 +1,228 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+cnoremap <silent> <F5> :execute ":bprevious!"
+inoremap <silent> <F5> :execute ":bprevious!"
+cnoremap <silent> <C-S-Tab> :execute ":bprevious!"
+inoremap <silent> <C-S-Tab> :execute ":bprevious!"
+cnoremap <silent> <F6> :execute ":bnext!"
+inoremap <silent> <F6> :execute ":bnext!"
+cnoremap <silent> <C-Tab> :execute ":bnext!"
+inoremap <silent> <C-Tab> :execute ":bnext!"
+map  va>d
+nnoremap <silent>  :CtrlP
+map [21~ :call Test()
+vmap <silent> ,e <Plug>CamelCaseMotion_e
+vmap <silent> ,b <Plug>CamelCaseMotion_b
+vmap <silent> ,w <Plug>CamelCaseMotion_w
+omap <silent> ,e <Plug>CamelCaseMotion_e
+omap <silent> ,b <Plug>CamelCaseMotion_b
+omap <silent> ,w <Plug>CamelCaseMotion_w
+nmap <silent> ,e <Plug>CamelCaseMotion_e
+nmap <silent> ,b <Plug>CamelCaseMotion_b
+nmap <silent> ,w <Plug>CamelCaseMotion_w
+map FF !Gperl -MText::Autoformat -e 'autoformat{all=>1}'
+map Q gq
+vmap S :perldo s/([A-Z])/"_".lc($1)/eg
+nmap <silent> \qq :QuickSession
+nmap gx <Plug>NetrwBrowseX
+vmap <silent> i,e <Plug>CamelCaseMotion_ie
+vmap <silent> i,b <Plug>CamelCaseMotion_ib
+vmap <silent> i,w <Plug>CamelCaseMotion_iw
+omap <silent> i,e <Plug>CamelCaseMotion_ie
+omap <silent> i,b <Plug>CamelCaseMotion_ib
+omap <silent> i,w <Plug>CamelCaseMotion_iw
+vnoremap p :let current_reg = @"gvs=current_reg
+vmap zf mz:'<O//{{{'>o// }}}`z?{{{A 
+map <F4> :w:!perl -w %
+map <F3> :w:make
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+map <F5> :w:!podchecker %
+noremap <silent> <C-S-Tab> :execute ":bprevious!"
+noremap <silent> <F6> :execute ":bnext!"
+noremap <silent> <C-Tab> :execute ":bnext!"
+map <silent> <F1> :call BufferList()
+map <F11> :call P4Revert()
+map <F12> :call P4Edit()
+map <F8> :call Make_Session()
+map <C-Right> :bn
+map <C-Left> :bp
+map!  <br />
+map!  <p>
+map!  &nbsp;
+cabbr hr i<a href=></a>F>
+cabbr mikify %s/->/ -> /g
+cabbr unmikify %s/ -> /->/g
+cabbr rhelp !cd $HOME/.vim/doc && makehelp.pl > erick.txt :helpt $HOME/.vim/doc
+cabbr ht helpt $HOME/.vim/doc
+cabbr snip e $HOME/.vim/doc/snippet.ini
+cabbr ebash e $HOME/.bashrc
+cabbr rc e $HOME/.vimrc
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set backspace=2
+set cmdheight=2
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set expandtab
+set grepprg=grep\ -ni
+set history=50
+set hlsearch
+set incsearch
+set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,:
+set iskeyword=@,48-57,_,192-255,:
+set laststatus=2
+set makeprg=perl\ -Wc\ %
+set mouse=a
+set omnifunc=syntaxcomplete#Complete
+set pastetoggle=<F8>
+set ruler
+set shell=bash
+set shiftwidth=4
+set showcmd
+set showmatch
+set tabstop=4
+set visualbell
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd /ms/.global/ny.w/user/b/boureric/dev/laf/core
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +0 bin/laf-client
+badd +0 bin/laf-client.cmd
+badd +0 bin/laf-server
+badd +0 bin/laf-server.real
+args bin/laf-client bin/laf-client.cmd bin/laf-server bin/laf-server.real
+edit bin/laf-client
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=[^A-Za-z_]
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=%m\ at\ %f\ line\ %l%.%#,%-G%.%#
+setlocal expandtab
+if &filetype != 'perl'
+setlocal filetype=perl
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+set foldexpr=SF_SetFolds()
+setlocal foldexpr=SF_SetFolds()
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=expr
+setlocal foldmethod=expr
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=crqol
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=\\<\\(use\\|require\\)\\>
+setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'->*','',''),'$','.pm','')
+setlocal indentexpr=GetPerlIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=,0),0],0=or,0=and
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,:
+setlocal keywordprg=perldoc\ -f
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=.,/usr/include,,,//ms/dist/corptsy/PROJ/CMUtils/uat/lib/perl5,//ms/dist/perl5/PROJ/Devel-REPL/1.003014/lib/perl5/,//ms/dist/perl5/PROJ/Tk/804.030-5.14-64/lib/perl5,//ms/dist/perl5/PROJ/Devel-ptkdb/1.1091/lib/perl5,//ms/dist/perl5/PROJ/Term-ReadLine-Gnu/1.20-6.2-ms1-5.14-64/lib/perl5,/ms/dist/perl5/VERS/5.14.2-0-64-core/lib/perl5,/ms/dist/perl5/VERS/5.14-64-core/lib/perl5,//ms/dist/perl5/PROJ/core/5.14.2-0-64/.exec/x86_64.linux.2.6.glibc.2.3/lib/perl5,,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'perl'
+setlocal syntax=perl
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 1 - ((0 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -1,0 +1,337 @@
+*erick.txt*                     Perl Snippets                       6 Jul 2005
+
+Author: Erick Bourgeois <erick.bourgeois@morganstanley.com>
+
+[ SQL ]                                                                   
+|rowcount|                  1. SQL Commands                                    
+==============================================================================
+[ Vim Commands ]                                                          
+|vim_cmds|                  1. vim commands                                    
+==============================================================================
+[ File IO ]                                                               
+|slurpmode|                 1. Slurp Mode and Paragraph Mode                   
+|hash_of_files|             2. Hash of All Files in a Directory                
+|file_tests|                3. File Test Operators                             
+|stderr|                    4. Capturing STDERR                                
+|file_glob|                 5. Creating File handle from glob or string        
+==============================================================================
+[ CGI / HTML ]                                                            
+|cgi_errors|                1. Redirecting CGI Errors                          
+|cgi_forms|                 2. HTML Forms with CGI.pm                          
+==============================================================================
+[ ARRAYS ]                                                                
+|shuffle|                   1. Shuffle an Array                                
+|array2html_table|          2. Display an Array in an HTML Table               
+==============================================================================
+[ ENV ]                                                                   
+|en_passant|                1. Current Script Name                             
+==============================================================================
+[ MODULES ]                                                               
+|module_install|            1. Installing Perl Modules Manually without Root   
+|using_perl_modules|        2. Using Perl modules on command line              
+==============================================================================
+[ MAIL ]                                                                  
+|mutt-html_email|           1. HTML Email from Sendmail or Mutt                
+==============================================================================
+[ DATE and TIME ]                                                         
+|yesterday_date|            1. Yesterday's Date, SQL Date                      
+==============================================================================
+[ Morgan Stanley ]                                                        
+|phone|                     1. Phone Numbers                                   
+|HR|                        2. HR Stuff                                        
+|databases|                 3. Scratch Databases                               
+==============================================================================
+[ JavaScript ]                                                            
+|arrays|                    1. Loop Through an Array                           
+|function|                  2. methods                                         
+==============================================================================
+[ Symbol Table ]                                                          
+|perl|                      1. Manipulating Perl symbol table                  
+==============================================================================
+******************************************************************************
+                                                                       [ SQL ]
+1. SQL Commands                                                     *rowcount*
+
+SET ROWCOUNT 10
+SELECT * FROM FOO
+SET ROWCOUNT 0
+
+Be sure to set the ROWCOUNT both before and after the query. Setting the
+ROWCOUNT to zero indicates that all rows should be returned. If you do not
+reset the ROWCOUNT after issuing the query, subsequent queries will also limit
+the number of rows returned according to the value of ROWCOUNT.
+
+To get the last entry.
+
+set rowcount 1
+select TradeId from Trade order by TradeId desc
+set rowcount 0
+
+==============================================================================
+                                                              [ Vim Commands ]
+1. vim commands                                                     *vim_cmds*
+
+gf -> go to file
+d$ -> delete end of line
+le -> left justify
+set list -> show all tabs
+
+==============================================================================
+                                                                   [ File IO ]
+1. Slurp Mode and Paragraph Mode                              *slurpmode* *$/*
+
+# Slurp Mode
+
+undef $/;
+open(FILE, "data.htm");
+$html = <FILE>;
+close(FILE);
+
+# Paragraph Mode
+
+$/ = '';
+==============================================================================
+2. Hash of All Files in a Directory                  *hash_of_files* *opendir*
+
+Returns a Hash in which the full path is the key
+and the filename is the value.
+
+sub get_files
+{
+	my $dir = shift;
+	opendir(DIR, $dir) or die "Can't open $dir: $!";
+	my %all_files = map {$dir . $_, $_} grep(!/\.\.?$/, readdir DIR);
+	close DIR;
+	return \%all_files;
+}
+==============================================================================
+3. File Test Operators                                            *file_tests*
+
+perldoc -f -x
+==============================================================================
+4. Capturing STDERR                                                   *stderr*
+
+perldoc -q stderr
+==============================================================================
+5. Creating File handle from glob or string                        *file_glob*
+
+my $file_handle = ( ref $arg eq 'GLOB' ? IO::Handle->new_from_fd($arg, "w") : IO::File->new("> $arg") );
+==============================================================================
+                                                                [ CGI / HTML ]
+1. Redirecting CGI Errors                         *cgi_errors* *carpout* *fat-
+1.                                                als* *browser* *fatalstobro-
+1.                                                                       wser*
+
+BEGIN {
+	use CGI::Carp qw/carpout/;
+	open(LOG, ">> error.log") or die "Can't append to error.log: $!\n";
+	&carpout (*LOG);
+}
+
+	OR
+
+use CGI::Carp qw/fatalsToBrowser/;
+==============================================================================
+2. HTML Forms with CGI.pm                             *cgi_forms* *cgi_fields*
+
+$q->startform;
+$q->hidden(-name=>'datafile');
+$q->hidden(-name=>'Index', -value=>"$index")
+$q->textfield(-name=>'Name', -size=>30);
+$q->popup_menu(-name=>'hour', -values=>[1..12], -labels=>$hash_ref);
+$q->textarea(-name=>'foo', -rows=>10, -cols=>10);
+$q->password_field(-name=>'foo', -maxlength=>10);
+$q->radio_group(-name=>'meridiem', -values=>[qw/am pm/]);
+$q->checkbox_group(-name=>'test', -values=>[qw/am pm/], -default=>[qw/am pm/], -linebreak=>'true', -labels=>\%labels);
+$q->checkbox(-name=>'test', -value=>'ON', -checked=>'checked', -label=>'Hi');
+$q->submit(-name=>'create_db', -value=>'New DB')
+$q->endform();
+==============================================================================
+                                                                    [ ARRAYS ]
+1. Shuffle an Array                                                  *shuffle*
+
+use List::Util qw/shuffle/;                   
+my @colors = qw/red green blue white yellow black maroon/;
+my $color = shuffle(@colors);
+print $color;
+==============================================================================
+2. Display an Array in an HTML Table                        *array2html_table*
+
+# Convert an array of data to an array of HTML table rows.
+# Takes 2 parameters: the num of columns and the array ref.
+
+sub table_rows
+{
+	my ($cols, $aref) = @_;
+	my $len = scalar @$aref;
+	my $padding = $len % $cols ? $cols - ($len % $cols) : 0;
+
+	while ($padding) {
+		push @$aref, '&nbsp;';
+		$len++;
+		$padding--;
+	}
+
+	my $last_row = $len / $cols;
+
+	my @tmp;
+	for my $n (0 .. $cols-1) {
+		$tmp[$n] = [splice @$aref, 0, $last_row];
+	}
+
+	my @output;
+
+	for my $i (0 .. $last_row-1)
+	{
+		push @output, "<tr>";
+		for my $c (0 .. $cols-1) 
+		{
+			push @output, "<td>$tmp[$c][$i]</td>";
+		}
+		push @output, "</tr>\n";
+	}
+	return @output;
+}
+
+my $test = [ qw(a1 b2 c3 d4 e5 f6 g7 h8 i9 j10 k11 L12 m13 n14)];
+# m13 n14 o15 p16)]; # q16 r17 s18 t19 u20 v21 w22 x23 y24 z25) ];
+==============================================================================
+                                                                       [ ENV ]
+1. Current Script Name                            *en_passant* *usage* *__FIL-
+1.                                                                        E__*
+
+(my $script_name = __FILE__) =~ s#.*/##;  # __FILE__ = full path to file
+
+OR
+
+(my $script_name = $0) =~ s#.*/##;        # $0 = full path to script
+==============================================================================
+                                                                   [ MODULES ]
+1. Installing Perl Modules Manually without       *module_install* *perl_modu-
+1.                                                                        les*
+
+# If you have you own complete perl distribution.
+	perl Makefile.PL PREFIX=/u/mydir/perl  
+
+# If you just want the module installed in your own directory.
+	perl Makefile.PL LIB=/u/mydir/perl
+
+	make
+	make test
+	make install
+==============================================================================
+2. Using Perl modules on command line                     *using_perl_modules*
+
+perl -MFoo::Bar=function -e 'print function("blah")'
+perl -MData::Dumper -MCPGOPS::Utils=get_ldap_person -e '$a = get_ldap_person(["burgeois"]); print Dumper $a'
+==============================================================================
+                                                                      [ MAIL ]
+1. HTML Email from Sendmail or Mutt                          *mutt-html_email*
+
+> I am newbie to UNIX, I tried to write a Perl program for
+> email sending, the mailing program I am using is sendmail,
+> my question is how can I send a HTML format email by
+> sendmail?? what is the param or instruction, thx
+
+Purists among you look away now!
+
+Quite easy, stick the following in your mail header, probably straight after
+the Subject: field.
+
+Content-Type: text/html; charset="iso-8859-1"
+
+Then, any HTML you slam in the message body will come out right in mail clients
+that understand it.  It won't look pretty if they don't understand it.
+==============================================================================
+                                                             [ DATE and TIME ]
+1. Yesterday's Date, SQL Date                      *yesterday_date* *sql_date*
+
+sub get_date 
+{
+	my $time = shift;
+	my ($day, $month, $year) = (localtime $time)[3, 4, 5];
+	return sprintf("%04d-%02d-%02d", $year+1900, $month+1, $day);
+}
+
+sub sql_date 
+{
+	my $time = shift;
+	my ($sec, $min, $hour, $day, $month, $year) = (localtime $time)[0 .. 5];
+	return sprintf("%04d/%02d/%02d %2d:%2d:%2d", $year+1900, $month+1, $day, $hour, $min, $sec);
+}
+
+# Print the mtime of a file called ./xxd
+	print sql_date( (stat './xxd')[9] ); 
+
+# Print the current time in sql format
+	print sql_date(time);
+ 
+# Number of seconds in a day = 86400;
+	print get_date(time); # today's date
+	print sql_date(time); # today's date
+
+# Yesterday's date
+	print get_date(time - 86400); 
+==============================================================================
+                                                            [ Morgan Stanley ]
+1. Phone Numbers                                                       *phone*
+
+Conference Call
+
+	When : Wednesday from 11:00 to 12:00 
+	Phone: 1-800-761-8522
+	Pass : 599589
+
+Contacts
+	David: 1 (212) 762-3445
+		1 (212) 761-2688 (Tuesdays)
+	Bill : 1 (212) 762-1419
+	Erick @ Home 4245
+	Mike Cell 813-7900
+==============================================================================
+2. HR Stuff                                                               *HR*
+
+Compuware ID: 114896
+Alarm Code: 1319
+MS ID: 599BF
+
+http://www.aeairweb.com/default.asp?uname=kingsley.gordon@morganstanley.com
+Travel: foobag11
+==============================================================================
+3. Scratch Databases                                               *databases*
+
+Our scratch database is NYQ_CPGOPS.cpgops I just sent you your automatically
+generated but unrememberable password.  Feel free to change it.  You have dbo
+privileges in this db.
+
+If you want another small test db, go to the "Operations Toolkit" and click on
+DBA.  Then "CreateDatabase" and answer the questions.  Take the small size they
+give automatically and the db will be set up very quickly.
+
+Password for user 'kingslgo' in NYQ_CPGOPS (database cpgops) is 'qq8JXrUp6p'
+==============================================================================
+                                                                [ JavaScript ]
+1. Loop Through an Array                                 *arrays* *for* *loop*
+
+function SumCosts(costArray)
+{
+	var sum = 0;
+	for (var i=0; i<costArray.length; i++)
+		sum = sum + costArray[i];
+	return sum;
+}
+==============================================================================
+2. methods                                                 *function* *syntax*
+
+Method calls must include parentheses:
+
+names = ["John", "Andrea", "Charlie", "Sam", "Kate"]
+sorted_names = names.sort()
+document.write(sorted_names) 
+==============================================================================
+                                                              [ Symbol Table ]
+1. Manipulating Perl symbol table                      *perl* *symbol* *table*
+
+*{'struct_new'} = \&new;
+*{'new'} = \&_new;
+==============================================================================

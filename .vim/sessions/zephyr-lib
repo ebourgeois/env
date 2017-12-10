@@ -1,0 +1,562 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+cnoremap <silent> <F5> :execute ":bprevious!"
+inoremap <silent> <F5> :execute ":bprevious!"
+cnoremap <silent> <C-S-Tab> :execute ":bprevious!"
+inoremap <silent> <C-S-Tab> :execute ":bprevious!"
+cnoremap <silent> <F6> :execute ":bnext!"
+inoremap <silent> <F6> :execute ":bnext!"
+cnoremap <silent> <C-Tab> :execute ":bnext!"
+inoremap <silent> <C-Tab> :execute ":bnext!"
+inoremap <silent> <S-Tab> =BackwardsSnippet()
+nnoremap <silent>  :TmuxNavigateLeft
+xnoremap 	 s:let g:snipmate_content_visual=getreg( 1 )
+snoremap <silent> 	 i<Right>=TriggerSnippet()
+nnoremap <silent> <NL> :TmuxNavigateDown
+map  va>d
+nnoremap <silent>  :TmuxNavigateRight
+noremap  :NERDTreeToggle
+nnoremap <silent>  :CtrlP
+snoremap  b<BS>
+map [21~ :call Test()
+nnoremap <silent>  :TmuxNavigatePrevious
+snoremap % b<BS>%
+snoremap ' b<BS>'
+vmap <silent> ,e <Plug>CamelCaseMotion_e
+vmap <silent> ,b <Plug>CamelCaseMotion_b
+vmap <silent> ,w <Plug>CamelCaseMotion_w
+omap <silent> ,e <Plug>CamelCaseMotion_e
+omap <silent> ,b <Plug>CamelCaseMotion_b
+omap <silent> ,w <Plug>CamelCaseMotion_w
+nmap <silent> ,e <Plug>CamelCaseMotion_e
+nmap <silent> ,b <Plug>CamelCaseMotion_b
+nmap <silent> ,w <Plug>CamelCaseMotion_w
+map <C-0x36> :b6
+map <C-0x35> :b5
+map <C-0x34> :b4
+map <C-0x33> :b3
+map <C-0x32> :b2
+map <C-0x31> :b1
+map FF !Gperl -MText::Autoformat -e 'autoformat{all=>1}'
+map K mqgqap`q
+map Q gq
+vmap S :perldo s/([A-Z])/"_".lc($1)/eg
+snoremap U b<BS>U
+snoremap \ b<BS>\
+nmap <silent> \qq :QuickSession
+noremap \N :NERDTreeTabsToggle
+snoremap ^ b<BS>^
+snoremap ` b<BS>`
+nmap gx <Plug>NetrwBrowseX
+vmap <silent> i,e <Plug>CamelCaseMotion_ie
+vmap <silent> i,b <Plug>CamelCaseMotion_ib
+vmap <silent> i,w <Plug>CamelCaseMotion_iw
+omap <silent> i,e <Plug>CamelCaseMotion_ie
+omap <silent> i,b <Plug>CamelCaseMotion_ib
+omap <silent> i,w <Plug>CamelCaseMotion_iw
+vnoremap p :let current_reg = @"gvs=current_reg
+vmap zf mz:'<O//{{{'>o// }}}`z?{{{A 
+nmap <F1> :CtrlPBuffer
+map <F4> :w:!perl -w %
+map <F3> :w:make
+map <F5> :w:!podchecker %
+noremap <silent> <C-S-Tab> :execute ":bprevious!"
+noremap <silent> <F6> :execute ":bnext!"
+noremap <silent> <C-Tab> :execute ":bnext!"
+map <F11> :call P4Revert()
+map <C-Right> :bn
+map <C-Left> :bp
+snoremap <Left> bi
+snoremap <Right> a
+snoremap <BS> b<BS>
+snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+nmap <silent> <F2> :MBEToggle
+vmap <silent> <F1> :call BufferList()
+omap <silent> <F1> :call BufferList()
+map <F12> :call P4Edit()
+map <F8> :call Make_Session()
+map!  <br />
+inoremap <silent> 	 u=TriggerSnippet()
+map!  <p>
+inoremap <silent> 	 =ShowAvailableSnips()
+map!  &nbsp;
+cabbr hr i<a href=></a>F>
+cabbr mikify %s/->/ -> /g
+cabbr unmikify %s/ -> /->/g
+cabbr rhelp !cd $HOME/.vim/doc && makehelp.pl > erick.txt :helpt $HOME/.vim/doc
+cabbr ht helpt $HOME/.vim/doc
+cabbr snip e $HOME/.vim/doc/snippet.ini
+cabbr ebash e $HOME/.bashrc
+cabbr ln e $HOME/twiki/.outline.twiki
+cabbr ss source ~/sessions/scratch
+cabbr te e $HOME/.vim/dev/test.vim
+cabbr rc e $HOME/.vimrc
+abbr shebang #!/ms/dist/perl5/bin/perl5.14use strict;use warnings;use v5.014;
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set autoread
+set background=dark
+set backspace=2
+set cindent
+set cinkeys=0{,0},0),!^F,o,O,e
+set cinoptions=t0,+4,(0,)60,u0,*100,j1
+set cinwords=if,else,while,do,for,elsif,sub,fi
+set cmdheight=2
+set comments=n:#
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set noequalalways
+set expandtab
+set grepprg=grep\ -ni
+set history=50
+set hlsearch
+set ignorecase
+set incsearch
+set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,:
+set iskeyword=@,48-57,_,192-255,:
+set laststatus=2
+set makeprg=perl\ -Wc\ %
+set mouse=n
+set omnifunc=syntaxcomplete#Complete
+set pastetoggle=<F8>
+set ruler
+set runtimepath=~/.vim/bundle/ctrlp.vim,~/.vim,~/.vim/bundle/autofold,~/.vim/bundle/bufferlist,~/.vim/bundle/ctrlp,~/.vim/bundle/fold_digest,~/.vim/bundle/nerdtree,~/.vim/bundle/tlib_vim,~/.vim/bundle/twiki,~/.vim/bundle/vim-addon-mw-utils,~/.vim/bundle/vim-colorschemes-master,~/.vim/bundle/vim-snipmate,~/.vim/bundle/vim-tmux-navigator-master,~/.vim/bundle/vim-twiki,~/.vim/bundle/vim-vividchalk-master,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vimfiles,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vim74,/ms/dist/fsf/PROJ/vim/7.4.70/common/share/vim/vimfiles/after,~/.vim/bundle/vim-snipmate/after,~/.vim/after
+set shell=bash
+set shiftwidth=4
+set showmatch
+set smartcase
+set tabstop=4
+set updatetime=1500
+set visualbell
+set wildmenu
+set window=60
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/dev/virtual/zephyr/lib/perl5
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +31 DBIx/Class/DefaultColumnValues.pm
+badd +1 DBIx/Class/InflateColumn/Serializer/YAMLXS.p
+badd +1 m
+badd +1 DFA/Simple.pm
+badd +1 DFA/Table.pm
+badd +1 GT/Alert.pm
+badd +1 GT/Base.pm
+badd +1 GT/Checkout.pm
+badd +1 GT/Checkout/Category.pm
+badd +1 GT/Checkout/Dependencies.pm
+badd +1 GT/Checkout/Error.pm
+badd +1 GT/Checkout/Module.pm
+badd +1 GT/Checkout/Module/AGModelComparison.pm
+badd +1 GT/Checkout/Module/AquilonVennZState.pm
+badd +1 GT/Checkout/Module/PopulateCaches.pm
+badd +1 GT/Checkout/Module/VennHostnameDNSAq.pm
+badd +1 GT/Checkout/Module/VennProviderSize.pm
+badd +1 GT/Checkout/Module/ZStateAquilon.pm
+badd +1 GT/Checkout/Module/ZStateVennAGCheck.pm
+badd +1 GT/Checkout/Module/ZStateZlightParked.pm
+badd +1 GT/Checkout/Module/ZephyrUnpingable.pm
+badd +1 GT/Checkout/Module/ZephyrZStateStuckBuild.pm
+badd +1 GT/Checkout/OutputModule.pm
+badd +1 GT/Checkout/OutputModule/Sitelog.pm
+badd +1 GT/Checkout/OutputModule/Table.pm
+badd +1 GT/Checkout/Role/Config.pm
+badd +1 GT/Checkout/Role/DB/Venn.pm
+badd +1 GT/Checkout/Role/DB/ZState.pm
+badd +1 GT/Checkout/Role/Output/Email.pm
+badd +1 GT/Checkout/Utils/HashDiff.pm
+badd +1 GT/Checkout/ZStateSchema.pm
+badd +1 GT/Checkout/ZStateSchema/Result/State.pm
+badd +1 GT/Command.pm
+badd +1 GT/Command/ProtoBuf.pm
+badd +1 GT/Command/Raw.pm
+badd +1 GT/Command/Result.pm
+badd +1 GT/Command/YAML.pm
+badd +1 GT/Config.pm
+badd +1 GT/DFA.pm
+badd +1 GT/DFA/Command.pm
+badd +1 GT/DFA/Command/AquilonUtils.pm
+badd +1 GT/DFA/Command/Utils.pm
+badd +1 GT/DFA/Command/acAQGDBlackout.pm
+badd +1 GT/DFA/Command/acAddAddress.pm
+badd +1 GT/DFA/Command/acAddDisk.pm
+badd +1 GT/DFA/Command/acAddDiskComplete.pm
+badd +1 GT/DFA/Command/acAddWindowsAlias.pm
+badd +1 GT/DFA/Command/acAllocate.pm
+badd +1 GT/DFA/Command/acAllocateDisk.pm
+badd +1 GT/DFA/Command/acAqUpdateOs.pm
+badd +1 GT/DFA/Command/acAttachDisk.pm
+badd +1 GT/DFA/Command/acAuroraDSDBAddHost.pm
+badd +1 GT/DFA/Command/acAuroraDSDBDelHost.pm
+badd +1 GT/DFA/Command/acAuroraDSDBGetIP.pm
+badd +1 GT/DFA/Command/acAutoReclaim.pm
+badd +1 GT/DFA/Command/acBuildStatusReady.pm
+badd +1 GT/DFA/Command/acChangeVMCluster.pm
+badd +1 GT/DFA/Command/acCreateComplete.pm
+badd +1 GT/DFA/Command/acDNSCheck.pm
+badd +1 GT/DFA/Command/acDeallocate.pm
+badd +1 GT/DFA/Command/acDeallocateDisk.pm
+badd +1 GT/DFA/Command/acDecoComplete.pm
+badd +1 GT/DFA/Command/acDelAddress.pm
+badd +1 GT/DFA/Command/acDelAliases.pm
+badd +1 GT/DFA/Command/acDelDisk.pm
+badd +1 GT/DFA/Command/acDelDiskComplete.pm
+badd +1 GT/DFA/Command/acDelDiskDB.pm
+badd +1 GT/DFA/Command/acDelHost.pm
+badd +1 GT/DFA/Command/acDelMachine.pm
+badd +1 GT/DFA/Command/acGetAqIp.pm
+badd +1 GT/DFA/Command/acMakeCluster.pm
+badd +1 GT/DFA/Command/acMakeClusterBarrier.pm
+badd +1 GT/DFA/Command/acMakeHost.pm
+badd +1 GT/DFA/Command/acMakeVMHost.pm
+badd +1 GT/DFA/Command/acMigrateBarrier.pm
+badd +1 GT/DFA/Command/acMigrateComplete.pm
+badd +1 GT/DFA/Command/acOsUpdateComplete.pm
+badd +1 GT/DFA/Command/acPXESwitch.pm
+badd +1 GT/DFA/Command/acRebuild.pm
+badd +1 GT/DFA/Command/acReclaimBarrier.pm
+badd +1 GT/DFA/Command/acResizeComplete.pm
+badd +1 GT/DFA/Command/acRevertModel.pm
+badd +1 GT/DFA/Command/acSANAddDisks.pm
+badd +1 GT/DFA/Command/acSANAddVM.pm
+badd +1 GT/DFA/Command/acSANAddVspace.pm
+badd +1 GT/DFA/Command/acSANComplete.pm
+badd +1 GT/DFA/Command/acSANDelDisks.pm
+badd +1 GT/DFA/Command/acSANDelVM.pm
+badd +1 GT/DFA/Command/acSANDelVspace.pm
+badd +1 GT/DFA/Command/acSANGetFilesystems.pm
+badd +1 GT/DFA/Command/acSpotAutoReclaim.pm
+badd +1 GT/DFA/Command/acSpotBuildStatusReady.pm
+badd +1 GT/DFA/Command/acSpotChangeGuestStatus.pm
+badd +1 GT/DFA/Command/acSpotCreateGuest.pm
+badd +1 GT/DFA/Command/acSpotDeleteGuest.pm
+badd +1 GT/DFA/Command/acSpotGetGuestInfo.pm
+badd +1 GT/DFA/Command/acSpotGetGuestStatus.pm
+badd +1 GT/DFA/Command/acSpotRetireGuest.pm
+badd +1 GT/DFA/Command/acSpotStartGuest.pm
+badd +1 GT/DFA/Command/acSpotStopGuest.pm
+badd +1 GT/DFA/Command/acUndoRPResize.pm
+badd +1 GT/DFA/Command/acUpdateModel.pm
+badd +1 GT/DFA/Command/acVApplianceAddDisk.pm
+badd +1 GT/DFA/Command/acVLDAddDisk.pm
+badd +1 GT/DFA/Command/acVLDAllocate.pm
+badd +1 GT/DFA/Command/acVLDAllocateDisk.pm
+badd +1 GT/DFA/Command/acVLDAttachDisk.pm
+badd +1 GT/DFA/Command/acVMActivate.pm
+badd +1 GT/DFA/Command/acVLDVApplianceAddDisk.pm
+badd +1 GT/DFA/Command/acVMDeactivate.pm
+badd +1 GT/DFA/Command/acVMFolderQuery.pm
+badd +1 GT/DFA/Command/acVMFolderRelocate.pm
+badd +1 GT/DFA/Command/acVMPowerOff.pm
+badd +1 GT/DFA/Command/acVMPowerOn.pm
+badd +1 GT/DFA/Command/acVMReclaimInGMC.pm
+badd +1 GT/DFA/Command/acVOPCheck.pm
+badd +1 GT/DFA/Command/acVOPDisableQRC.pm
+badd +1 GT/DFA/Command/acVOPEnableQRC.pm
+badd +1 GT/DFA/Command/acVOPLockCluster.pm
+badd +1 GT/DFA/Command/acVOPLockVM.pm
+badd +1 GT/DFA/Command/acVOPReloadVM.pm
+badd +1 GT/DFA/Command/acVOPRemoveVM.pm
+badd +1 GT/DFA/Command/acVOPRestrictVM.pm
+badd +1 GT/DFA/Command/acVOPTouchVM.pm
+badd +1 GT/DFA/Command/acVOPUnlockCluster.pm
+badd +1 GT/DFA/Command/acVOPUnlockVM.pm
+badd +1 GT/DFA/Command/acVOPUnrestrictVM.pm
+badd +1 GT/DFA/Command/acVOPVerifyDisks.pm
+badd +1 GT/DFA/Command/acVOPVerifyResize.pm
+badd +1 GT/DFA/Command/acVennCancelCommit.pm
+badd +1 GT/DFA/Command/acVennCommit.pm
+badd +1 GT/DFA/Command/acVennCommitDisks.pm
+badd +1 GT/DFA/Command/acVennMigrate.pm
+badd +1 GT/DFA/Command/acVennResize.pm
+badd +1 GT/DFA/Command/acVennStoreMetadata.pm
+badd +1 GT/DFA/Command/acVmdkDelete.pm
+badd +1 GT/DFA/Command/acWindowsGenerateHostname.pm
+badd +1 GT/DFA/Command/acZephyrAddHost.pm
+badd +1 GT/DFA/Command/acZephyrAddInterface.pm
+badd +1 GT/DFA/Command/acZephyrAddMachine.pm
+badd +1 GT/DFA/Command/acZephyrAllocate.pm
+badd +1 GT/DFA/Command/acZlightAddInterface.pm
+badd +1 GT/DFA/Command/acZlightAddLinuxHost.pm
+badd +1 GT/DFA/Command/acZlightAddMachine.pm
+badd +1 GT/DFA/Command/acZlightAddWindowsHost.pm
+badd +1 GT/DFA/Command/acZlightAllocate.pm
+badd +1 GT/DFA/Command/acZlightAllocateDisk.pm
+badd +1 GT/DFA/Command/acZlightAttachDisk.pm
+badd +1 GT/DFA/Command/acZlightDelInterface.pm
+badd +1 GT/DFA/Command/acZlightGetMac.pm
+badd +1 GT/DFA/Command/acZlightGetSubnet.pm
+badd +1 GT/DFA/Command/acZlightUpdateInterface.pm
+badd +1 GT/DFA/Command/acZlightVLDAddMachine.pm
+badd +1 GT/DFA/CommandRole/Exceptions.pm
+badd +1 GT/DFA/CommandRole/Momentos.pm
+badd +1 GT/DFA/CommandRole/Request.pm
+badd +1 GT/DFA/CommandRole/SAN.pm
+badd +1 GT/DFA/CommandRole/VennUA.pm
+badd +1 GT/DFA/Constants.pm
+badd +1 GT/DFA/DaemonFSM.pm
+badd +1 GT/DFA/DaemonFSM/Daemon.pm
+badd +1 GT/DFA/FSMBase.pm
+badd +1 GT/DFA/TaskFSM.pm
+badd +1 GT/DFA/TaskFSM/Migrate.pm
+badd +1 GT/DFA/TaskFSM/SpotAllocate.pm
+badd +1 GT/DFA/TaskFSM/SpotDeallocate.pm
+badd +1 GT/DFA/TaskFSM/SpotReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZAddDisk.pm
+badd +1 GT/DFA/TaskFSM/ZAddSan.pm
+badd +1 GT/DFA/TaskFSM/ZDelDisk.pm
+badd +1 GT/DFA/TaskFSM/ZDelSan.pm
+badd +1 GT/DFA/TaskFSM/ZResize.pm
+badd +1 GT/DFA/TaskFSM/ZVLDAddDisk.pm
+badd +1 GT/DFA/TaskFSM/ZVLDDelDisk.pm
+badd +1 GT/DFA/TaskFSM/ZephyrAquilonAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZephyrAquilonDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZephyrAquilonReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightAquilonAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightAquilonDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightAquilonReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightAquilonUpdateOs.pm
+badd +1 GT/DFA/TaskFSM/ZlightAuroraAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightAuroraDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightAuroraReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightVApplianceAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVApplianceDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVApplianceReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAquilonAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAquilonDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAquilonReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAuroraAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAuroraDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDAuroraReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDVApplianceAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDVApplianceDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDVApplianceReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDWindowsAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDWindowsDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightVLDWindowsReclaim.pm
+badd +1 GT/DFA/TaskFSM/ZlightWindowsAllocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightWindowsDeallocate.pm
+badd +1 GT/DFA/TaskFSM/ZlightWindowsReclaim.pm
+badd +1 GT/DFA/TaskMomento.pm
+badd +1 GT/DFA/Transitions/DaemonStates.pm
+badd +1 GT/DFA/Transitions/MigrateStates.pm
+badd +1 GT/DFA/Transitions/SpotAllocateStates.pm
+badd +1 GT/DFA/Transitions/SpotDeallocateStates.pm
+badd +1 GT/DFA/Transitions/SpotReclaimStates.pm
+badd +1 GT/DFA/Transitions/TransitionHelpers.pm
+badd +1 GT/DFA/Transitions/ZAddDiskStates.pm
+badd +1 GT/DFA/Transitions/ZAddSanStates.pm
+badd +1 GT/DFA/Transitions/ZDelDiskStates.pm
+badd +1 GT/DFA/Transitions/ZDelSanStates.pm
+badd +1 GT/DFA/Transitions/ZResizeStates.pm
+badd +1 GT/DFA/Transitions/ZVLDAddDiskStates.pm
+badd +1 GT/DFA/Transitions/ZVLDDelDiskStates.pm
+badd +1 GT/DFA/Transitions/ZephyrAquilonAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZephyrAquilonDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZephyrAquilonReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightAquilonAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightAquilonDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightAquilonReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightAquilonUpdateOsStates.pm
+badd +1 GT/DFA/Transitions/ZlightAuroraAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightAuroraDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightAuroraReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightVApplianceAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVApplianceDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVApplianceReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAquilonAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAquilonDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAquilonReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAuroraAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAuroraDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDAuroraReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDVApplianceAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDVApplianceDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDVApplianceReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDWindowsAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDWindowsDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightVLDWindowsReclaimStates.pm
+badd +1 GT/DFA/Transitions/ZlightWindowsAllocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightWindowsDeallocateStates.pm
+badd +1 GT/DFA/Transitions/ZlightWindowsReclaimStates.pm
+badd +1 GT/Daemon.pm
+badd +1 GT/Dependencies.pm
+badd +1 GT/Exceptions.pm
+badd +1 GT/Importer.pm
+badd +1 GT/Importer/AqMachine.pm
+badd +1 GT/Importer/Cluster.pm
+badd +1 GT/Importer/NasShare.pm
+badd +1 GT/Importer/Types.pm
+badd +1 GT/LAF.pm
+badd +1 GT/LAF/Output.pm
+badd +1 GT/LAF/Output/State.pm
+badd +1 GT/LAF/Output/Stats.pm
+badd +1 GT/LAF/WrapperUtils.pm
+badd +1 GT/LAF/Zephyr.pm
+badd +1 GT/LAF/ZephyrLight.pm
+badd +1 GT/LAF/Zhost.pm
+badd +1 GT/Logger.pm
+badd +1 GT/Logging.pm
+badd +1 GT/State/DB.pm
+badd +1 GT/State/Schema.pm
+badd +1 GT/State/Schema/Result/Disk.pm
+badd +1 GT/State/Schema/Result/State.pm
+badd +1 GT/State/Schema/Result/UsedHostnames.pm
+badd +1 GT/State/Schema/Result/V_ACL_USERQUOTA.pm
+badd +1 GT/Tokens.pm
+badd +1 GT/VennUA.pm
+badd +1 GT/VennUA/HttpResponse.pm
+badd +1 SchemaTypes/AnyOSVersion.pm
+badd +1 SchemaTypes/AquilonCluster.pm
+badd +1 SchemaTypes/AquilonDevPersonality.pm
+badd +1 SchemaTypes/AquilonLinuxOSVersion.pm
+badd +1 SchemaTypes/AquilonPersonality.pm
+badd +1 SchemaTypes/AquilonWindowsOSVersion.pm
+badd +1 SchemaTypes/AuroraContinent.pm
+badd +1 SchemaTypes/AuroraLinuxOSVersion.pm
+badd +1 SchemaTypes/Environment.pm
+badd +1 SchemaTypes/HostnameDomain.pm
+badd +1 SchemaTypes/Netgroup.pm
+badd +1 SchemaTypes/Proid.pm
+badd +1 SchemaTypes/ProviderState.pm
+badd +1 SchemaTypes/VAppOSVersion.pm
+args DBIx/Class/DefaultColumnValues.pm DBIx/Class/InflateColumn/Serializer/YAMLXS.p m DFA/Simple.pm DFA/Table.pm GT/Alert.pm GT/Base.pm GT/Checkout.pm GT/Checkout/Category.pm GT/Checkout/Dependencies.pm GT/Checkout/Error.pm GT/Checkout/Module.pm GT/Checkout/Module/AGModelComparison.pm GT/Checkout/Module/AquilonVennZState.pm GT/Checkout/Module/PopulateCaches.pm GT/Checkout/Module/VennHostnameDNSAq.pm GT/Checkout/Module/VennProviderSize.pm GT/Checkout/Module/ZStateAquilon.pm GT/Checkout/Module/ZStateVennAGCheck.pm GT/Checkout/Module/ZStateZlightParked.pm GT/Checkout/Module/ZephyrUnpingable.pm GT/Checkout/Module/ZephyrZStateStuckBuild.pm GT/Checkout/OutputModule.pm GT/Checkout/OutputModule/Sitelog.pm GT/Checkout/OutputModule/Table.pm GT/Checkout/Role/Config.pm GT/Checkout/Role/DB/Venn.pm GT/Checkout/Role/DB/ZState.pm GT/Checkout/Role/Output/Email.pm GT/Checkout/Utils/HashDiff.pm GT/Checkout/ZStateSchema.pm GT/Checkout/ZStateSchema/Result/State.pm GT/Command.pm GT/Command/ProtoBuf.pm GT/Command/Raw.pm GT/Command/Result.pm GT/Command/YAML.pm GT/Config.pm GT/DFA.pm GT/DFA/Command.pm GT/DFA/Command/AquilonUtils.pm GT/DFA/Command/Utils.pm GT/DFA/Command/acAQGDBlackout.pm GT/DFA/Command/acAddAddress.pm GT/DFA/Command/acAddDisk.pm GT/DFA/Command/acAddDiskComplete.pm GT/DFA/Command/acAddWindowsAlias.pm GT/DFA/Command/acAllocate.pm GT/DFA/Command/acAllocateDisk.pm GT/DFA/Command/acAqUpdateOs.pm GT/DFA/Command/acAttachDisk.pm GT/DFA/Command/acAuroraDSDBAddHost.pm GT/DFA/Command/acAuroraDSDBDelHost.pm GT/DFA/Command/acAuroraDSDBGetIP.pm GT/DFA/Command/acAutoReclaim.pm GT/DFA/Command/acBuildStatusReady.pm GT/DFA/Command/acChangeVMCluster.pm GT/DFA/Command/acCreateComplete.pm GT/DFA/Command/acDNSCheck.pm GT/DFA/Command/acDeallocate.pm GT/DFA/Command/acDeallocateDisk.pm GT/DFA/Command/acDecoComplete.pm GT/DFA/Command/acDelAddress.pm GT/DFA/Command/acDelAliases.pm GT/DFA/Command/acDelDisk.pm GT/DFA/Command/acDelDiskComplete.pm GT/DFA/Command/acDelDiskDB.pm GT/DFA/Command/acDelHost.pm GT/DFA/Command/acDelMachine.pm GT/DFA/Command/acGetAqIp.pm GT/DFA/Command/acMakeCluster.pm GT/DFA/Command/acMakeClusterBarrier.pm GT/DFA/Command/acMakeHost.pm GT/DFA/Command/acMakeVMHost.pm GT/DFA/Command/acMigrateBarrier.pm GT/DFA/Command/acMigrateComplete.pm GT/DFA/Command/acOsUpdateComplete.pm GT/DFA/Command/acPXESwitch.pm GT/DFA/Command/acRebuild.pm GT/DFA/Command/acReclaimBarrier.pm GT/DFA/Command/acResizeComplete.pm GT/DFA/Command/acRevertModel.pm GT/DFA/Command/acSANAddDisks.pm GT/DFA/Command/acSANAddVM.pm GT/DFA/Command/acSANAddVspace.pm GT/DFA/Command/acSANComplete.pm GT/DFA/Command/acSANDelDisks.pm GT/DFA/Command/acSANDelVM.pm GT/DFA/Command/acSANDelVspace.pm GT/DFA/Command/acSANGetFilesystems.pm GT/DFA/Command/acSpotAutoReclaim.pm GT/DFA/Command/acSpotBuildStatusReady.pm GT/DFA/Command/acSpotChangeGuestStatus.pm GT/DFA/Command/acSpotCreateGuest.pm GT/DFA/Command/acSpotDeleteGuest.pm GT/DFA/Command/acSpotGetGuestInfo.pm GT/DFA/Command/acSpotGetGuestStatus.pm GT/DFA/Command/acSpotRetireGuest.pm GT/DFA/Command/acSpotStartGuest.pm GT/DFA/Command/acSpotStopGuest.pm GT/DFA/Command/acUndoRPResize.pm GT/DFA/Command/acUpdateModel.pm GT/DFA/Command/acVApplianceAddDisk.pm GT/DFA/Command/acVLDAddDisk.pm GT/DFA/Command/acVLDAllocate.pm GT/DFA/Command/acVLDAllocateDisk.pm GT/DFA/Command/acVLDAttachDisk.pm GT/DFA/Command/acVMActivate.pm GT/DFA/Command/acVLDVApplianceAddDisk.pm GT/DFA/Command/acVMDeactivate.pm GT/DFA/Command/acVMFolderQuery.pm GT/DFA/Command/acVMFolderRelocate.pm GT/DFA/Command/acVMPowerOff.pm GT/DFA/Command/acVMPowerOn.pm GT/DFA/Command/acVMReclaimInGMC.pm GT/DFA/Command/acVOPCheck.pm GT/DFA/Command/acVOPDisableQRC.pm GT/DFA/Command/acVOPEnableQRC.pm GT/DFA/Command/acVOPLockCluster.pm GT/DFA/Command/acVOPLockVM.pm GT/DFA/Command/acVOPReloadVM.pm GT/DFA/Command/acVOPRemoveVM.pm GT/DFA/Command/acVOPRestrictVM.pm GT/DFA/Command/acVOPTouchVM.pm GT/DFA/Command/acVOPUnlockCluster.pm GT/DFA/Command/acVOPUnlockVM.pm GT/DFA/Command/acVOPUnrestrictVM.pm GT/DFA/Command/acVOPVerifyDisks.pm GT/DFA/Command/acVOPVerifyResize.pm GT/DFA/Command/acVennCancelCommit.pm GT/DFA/Command/acVennCommit.pm GT/DFA/Command/acVennCommitDisks.pm GT/DFA/Command/acVennMigrate.pm GT/DFA/Command/acVennResize.pm GT/DFA/Command/acVennStoreMetadata.pm GT/DFA/Command/acVmdkDelete.pm GT/DFA/Command/acWindowsGenerateHostname.pm GT/DFA/Command/acZephyrAddHost.pm GT/DFA/Command/acZephyrAddInterface.pm GT/DFA/Command/acZephyrAddMachine.pm GT/DFA/Command/acZephyrAllocate.pm GT/DFA/Command/acZlightAddInterface.pm GT/DFA/Command/acZlightAddLinuxHost.pm GT/DFA/Command/acZlightAddMachine.pm GT/DFA/Command/acZlightAddWindowsHost.pm GT/DFA/Command/acZlightAllocate.pm GT/DFA/Command/acZlightAllocateDisk.pm GT/DFA/Command/acZlightAttachDisk.pm GT/DFA/Command/acZlightDelInterface.pm GT/DFA/Command/acZlightGetMac.pm GT/DFA/Command/acZlightGetSubnet.pm GT/DFA/Command/acZlightUpdateInterface.pm GT/DFA/Command/acZlightVLDAddMachine.pm GT/DFA/CommandRole/Exceptions.pm GT/DFA/CommandRole/Momentos.pm GT/DFA/CommandRole/Request.pm GT/DFA/CommandRole/SAN.pm GT/DFA/CommandRole/VennUA.pm GT/DFA/Constants.pm GT/DFA/DaemonFSM.pm GT/DFA/DaemonFSM/Daemon.pm GT/DFA/FSMBase.pm GT/DFA/TaskFSM.pm GT/DFA/TaskFSM/Migrate.pm GT/DFA/TaskFSM/SpotAllocate.pm GT/DFA/TaskFSM/SpotDeallocate.pm GT/DFA/TaskFSM/SpotReclaim.pm GT/DFA/TaskFSM/ZAddDisk.pm GT/DFA/TaskFSM/ZAddSan.pm GT/DFA/TaskFSM/ZDelDisk.pm GT/DFA/TaskFSM/ZDelSan.pm GT/DFA/TaskFSM/ZResize.pm GT/DFA/TaskFSM/ZVLDAddDisk.pm GT/DFA/TaskFSM/ZVLDDelDisk.pm GT/DFA/TaskFSM/ZephyrAquilonAllocate.pm GT/DFA/TaskFSM/ZephyrAquilonDeallocate.pm GT/DFA/TaskFSM/ZephyrAquilonReclaim.pm GT/DFA/TaskFSM/ZlightAquilonAllocate.pm GT/DFA/TaskFSM/ZlightAquilonDeallocate.pm GT/DFA/TaskFSM/ZlightAquilonReclaim.pm GT/DFA/TaskFSM/ZlightAquilonUpdateOs.pm GT/DFA/TaskFSM/ZlightAuroraAllocate.pm GT/DFA/TaskFSM/ZlightAuroraDeallocate.pm GT/DFA/TaskFSM/ZlightAuroraReclaim.pm GT/DFA/TaskFSM/ZlightVApplianceAllocate.pm GT/DFA/TaskFSM/ZlightVApplianceDeallocate.pm GT/DFA/TaskFSM/ZlightVApplianceReclaim.pm GT/DFA/TaskFSM/ZlightVLDAquilonAllocate.pm GT/DFA/TaskFSM/ZlightVLDAquilonDeallocate.pm GT/DFA/TaskFSM/ZlightVLDAquilonReclaim.pm GT/DFA/TaskFSM/ZlightVLDAuroraAllocate.pm GT/DFA/TaskFSM/ZlightVLDAuroraDeallocate.pm GT/DFA/TaskFSM/ZlightVLDAuroraReclaim.pm GT/DFA/TaskFSM/ZlightVLDVApplianceAllocate.pm GT/DFA/TaskFSM/ZlightVLDVApplianceDeallocate.pm GT/DFA/TaskFSM/ZlightVLDVApplianceReclaim.pm GT/DFA/TaskFSM/ZlightVLDWindowsAllocate.pm GT/DFA/TaskFSM/ZlightVLDWindowsDeallocate.pm GT/DFA/TaskFSM/ZlightVLDWindowsReclaim.pm GT/DFA/TaskFSM/ZlightWindowsAllocate.pm GT/DFA/TaskFSM/ZlightWindowsDeallocate.pm GT/DFA/TaskFSM/ZlightWindowsReclaim.pm GT/DFA/TaskMomento.pm GT/DFA/Transitions/DaemonStates.pm GT/DFA/Transitions/MigrateStates.pm GT/DFA/Transitions/SpotAllocateStates.pm GT/DFA/Transitions/SpotDeallocateStates.pm GT/DFA/Transitions/SpotReclaimStates.pm GT/DFA/Transitions/TransitionHelpers.pm GT/DFA/Transitions/ZAddDiskStates.pm GT/DFA/Transitions/ZAddSanStates.pm GT/DFA/Transitions/ZDelDiskStates.pm GT/DFA/Transitions/ZDelSanStates.pm GT/DFA/Transitions/ZResizeStates.pm GT/DFA/Transitions/ZVLDAddDiskStates.pm GT/DFA/Transitions/ZVLDDelDiskStates.pm GT/DFA/Transitions/ZephyrAquilonAllocateStates.pm GT/DFA/Transitions/ZephyrAquilonDeallocateStates.pm GT/DFA/Transitions/ZephyrAquilonReclaimStates.pm GT/DFA/Transitions/ZlightAquilonAllocateStates.pm GT/DFA/Transitions/ZlightAquilonDeallocateStates.pm GT/DFA/Transitions/ZlightAquilonReclaimStates.pm GT/DFA/Transitions/ZlightAquilonUpdateOsStates.pm GT/DFA/Transitions/ZlightAuroraAllocateStates.pm GT/DFA/Transitions/ZlightAuroraDeallocateStates.pm GT/DFA/Transitions/ZlightAuroraReclaimStates.pm GT/DFA/Transitions/ZlightVApplianceAllocateStates.pm GT/DFA/Transitions/ZlightVApplianceDeallocateStates.pm GT/DFA/Transitions/ZlightVApplianceReclaimStates.pm GT/DFA/Transitions/ZlightVLDAquilonAllocateStates.pm GT/DFA/Transitions/ZlightVLDAquilonDeallocateStates.pm GT/DFA/Transitions/ZlightVLDAquilonReclaimStates.pm GT/DFA/Transitions/ZlightVLDAuroraAllocateStates.pm GT/DFA/Transitions/ZlightVLDAuroraDeallocateStates.pm GT/DFA/Transitions/ZlightVLDAuroraReclaimStates.pm GT/DFA/Transitions/ZlightVLDVApplianceAllocateStates.pm GT/DFA/Transitions/ZlightVLDVApplianceDeallocateStates.pm GT/DFA/Transitions/ZlightVLDVApplianceReclaimStates.pm GT/DFA/Transitions/ZlightVLDWindowsAllocateStates.pm GT/DFA/Transitions/ZlightVLDWindowsDeallocateStates.pm GT/DFA/Transitions/ZlightVLDWindowsReclaimStates.pm GT/DFA/Transitions/ZlightWindowsAllocateStates.pm GT/DFA/Transitions/ZlightWindowsDeallocateStates.pm GT/DFA/Transitions/ZlightWindowsReclaimStates.pm GT/Daemon.pm GT/Dependencies.pm GT/Exceptions.pm GT/Importer.pm GT/Importer/AqMachine.pm GT/Importer/Cluster.pm GT/Importer/NasShare.pm GT/Importer/Types.pm GT/LAF.pm GT/LAF/Output.pm GT/LAF/Output/State.pm GT/LAF/Output/Stats.pm GT/LAF/WrapperUtils.pm GT/LAF/Zephyr.pm GT/LAF/ZephyrLight.pm GT/LAF/Zhost.pm GT/Logger.pm GT/Logging.pm GT/State/DB.pm GT/State/Schema.pm GT/State/Schema/Result/Disk.pm GT/State/Schema/Result/State.pm GT/State/Schema/Result/UsedHostnames.pm GT/State/Schema/Result/V_ACL_USERQUOTA.pm GT/Tokens.pm GT/VennUA.pm GT/VennUA/HttpResponse.pm SchemaTypes/AnyOSVersion.pm SchemaTypes/AquilonCluster.pm SchemaTypes/AquilonDevPersonality.pm SchemaTypes/AquilonLinuxOSVersion.pm SchemaTypes/AquilonPersonality.pm SchemaTypes/AquilonWindowsOSVersion.pm SchemaTypes/AuroraContinent.pm SchemaTypes/AuroraLinuxOSVersion.pm SchemaTypes/Environment.pm SchemaTypes/HostnameDomain.pm SchemaTypes/Netgroup.pm SchemaTypes/Proid.pm SchemaTypes/ProviderState.pm SchemaTypes/VAppOSVersion.pm AQ/Command/show_host.pm AQ/Command/show_machine.pm AQ/Command/show_cluster.pm AQ/Command/show_share.pm AQ/Command/show_model.pm AQ/Command.pm ./Virt/Command.pm ./Virt/AnsiLog.pm ./Virt/Log.pm ./Virt/GetoptLazy.pm ./Virt/Utils.pm
+edit DBIx/Class/DefaultColumnValues.pm
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),!^F,o,O,e
+setlocal cinoptions=t0,+4,(0,)60,u0,*100,j1
+setlocal cinwords=if,else,while,do,for,elsif,sub,fi
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=[^A-Za-z_]
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'perl'
+setlocal filetype=perl
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+set foldexpr=SF_SetFolds()
+setlocal foldexpr=SF_SetFolds()
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=expr
+setlocal foldmethod=expr
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=crqol
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=\\<\\(use\\|require\\)\\>
+setlocal includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'->*','',''),'$','.pm','')
+setlocal indentexpr=GetPerlIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,0=,0),0],0=or,0=and
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,:
+setlocal keywordprg=perldoc\ -f
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=.,/usr/include,,,//ms/dist/corptsy/PROJ/CMUtils/uat/lib/perl5,//ms/dist/perl5/PROJ/Devel-REPL/1.003014/lib/perl5/,//ms/dist/perl5/PROJ/Tk/804.030-5.14-64/lib/perl5,//ms/dist/perl5/PROJ/Devel-ptkdb/1.1091/lib/perl5,//ms/dist/perl5/PROJ/Term-ReadLine-Gnu/1.20-6.2-ms1-5.14-64/lib/perl5,/ms/dist/perl5/VERS/5.14.2-0-64-core/lib/perl5,/ms/dist/perl5/VERS/5.14-64-core/lib/perl5,//ms/dist/perl5/PROJ/core/5.14.2-0-64/.exec/x86_64.linux.2.6.glibc.2.3/lib/perl5,,
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'perl'
+setlocal syntax=perl
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+39
+normal! zo
+let s:l = 31 - ((20 * winheight(0) + 30) / 61)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+31
+normal! 020|
+lcd ~/dev/virtual/zephyr/lib/perl5/DBIx/Class
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/ms/dist/secdsg/PROJ/opendash/0.8/api/lib/perl5'
+let g:netrw_dirhist_2='/ms/dist/secdsg/PROJ/opendash/0.8/api/lib/perl5/OpenDASH'
+let g:netrw_dirhist_3='/a/nyn168f1/vol/nyn168f1v3/u_t1297212543/kingslgo/dev/secadmin/tools/1.0/src/lib/perl5/Utils/Ldap'

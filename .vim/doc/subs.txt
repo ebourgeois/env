@@ -1,0 +1,23 @@
+*subs.txt*            A Brief History of Famous Haircuts            6 Jul 2005
+
+Author: Leonard Nimoy
+
+[ Importing ]                                                             
+|import|                    1.                                                 
+==============================================================================
+******************************************************************************
+                                                                 [ Importing ]
+1.                                                                    *import*
+
+# This function 'use' Foo::Bar if 'use_dependencies' has been supplied
+sub import
+{
+	my $class = shift;
+	my %args = @_;
+	
+	if ( delete($args{'use_dependencies'}) )
+	{
+		use Foo::Bar
+	}
+}
+==============================================================================
