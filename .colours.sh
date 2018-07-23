@@ -22,6 +22,15 @@ export PURPLE='\e[0;35m'       # Purple
 export CYAN='\e[0;36m'         # Cyan
 export WHITE='\e[0;37m'        # White
 
+export LIGHT_GRAY="\[\033[0;37m\]"
+export LIGHT_BLACK="\[\033[1;30m\]"
+export LIGHT_RED="\[\033[1;31m\]"
+export LIGHT_GREEN="\[\033[1;32m\]"
+export LIGHT_YELLOW="\[\033[1;33m\]"
+export LIGHT_BLUE="\[\033[1;34m\]"
+export LIGHT_PINK="\[\033[1;35m\]"
+export LIGHT_CYAN="\[\033[1;36m\]"
+
 # Bold
 export BBLACK='\e[1;30m'       # Black
 export BRED='\e[1;31m'         # Red
