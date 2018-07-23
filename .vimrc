@@ -111,7 +111,6 @@ call pathogen#infect()
 " }}}
 
 " Global Abbreviations                                                     {{{
-    ab shebang #!/ms/dist/perl5/bin/perl5.14use strict;use warnings;use v5.014;
     ca rc e $HOME/.vimrc
     ca te e $HOME/.vim/dev/test.vim
     ca ss source ~/sessions/scratch

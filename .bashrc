@@ -1,8 +1,5 @@
 # .bashrc
 export INPUTRC=~/.inputrc
-
-unset PERL5LIB
-
 export SHELL=`which bash`
 
 . $HOME/.colours.sh
@@ -42,42 +39,8 @@ export PATH=$PATH:/ms/dist/fsf/PROJ/rrdtool/1.5.6-0/bin
 
 # Perforce export P4CLIENT=boureric
 export P4EDITOR='vim -X'
-export P4ROOT=$HOME/dev
-export P4MERGE='vimdiff -X'
-
-# Server Environment check
-#SRV_STATUS=$(servinfo `hostname`|grep -i status|//ms/dist/perl5/bin/perl5.14 -ne 'print $1 if m/Status: \.+ (\w+)/')
-
 # Colours
-TEMP="\[\033[1;30m\]"
-BLACK="\[\033[0;30m\]"
-RED="\[\033[0;31m\]"
-GREEN="\[\033[0;32m\]"
-ORANGE="\[\033[0;33m\]"
-BLUE="\[\033[0;34m\]"
-PURPLE="\[\033[0;35m\]"
-CYAN="\[\033[0;36m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
-LIGHT_BLACK="\[\033[1;30m\]"
-LIGHT_RED="\[\033[1;31m\]"
-LIGHT_GREEN="\[\033[1;32m\]"
-YELLOW="\[\033[1;33m\]"
-LIGHT_BLUE="\[\033[1;34m\]"
-LIGHT_PINK="\[\033[1;35m\]"
-LIGHT_CYAN="\[\033[1;36m\]"
-WHITE="\[\033[1;37m\]"
-NO_COLOUR="\[\033[0m\]"
-RED_BG="\[\033[0;41m\]"
-BLUE_BG="\[\033[0;44m\]"
-# High Intensty
-IBLACK="\[\033[0;90m\]"       # Black
-IRED="\[\033[0;91m\]"         # Red
-IGREEN="\[\033[0;92m\]"       # Green
-IYELLOW="\[\033[0;93m\]"      # Yellow
-IBLUE="\[\033[0;94m\]"        # Blue
-IPURPLE="\[\033[0;95m\]"      # Purple
-ICYAN="\[\033[0;96m\]"        # Cyan
-IWHITE="\[\033[0;97m\]"       # White
+. $HOME/.colours.sh
 
 export CURR_TTY=$(temp=$(tty) ; echo ${temp:5})
 PS1="$RED.:$WHITE\w$RED:.\n\
@@ -104,10 +67,6 @@ export PS1="${PS1}$GIT_PS1 \`if [ \$? = 0 ]; then echo '${GREEN}$'; else echo '$
 
 # export LS_COLORS=$'no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
 export LS_COLORS=$'no=00:fi=00:di=00;34:ln=00;35:pi=40;33:so=00;32:bd=40;33;01:cd=40;33;01:or=01;37;41:mi=01;37;41:ex=00;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
-
-# User specific aliases and functions
-# alias to replace startx
-alias myx='xinit ~/.xinitrc -- ~/.xserverrc'
 
 alias ebash='vim -X ~/.bashrc'
 # Application shortcuts
@@ -137,16 +96,13 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias ping='ping -c 1'
-alias vlogs='cd /v/region/na/appl/virtual/virtbuild/data/prod'
 alias pinggo='ping -c 1 google.ca'
 alias pingg='ping -c 1 gate'
 alias cpd='cp -R'
 alias h='history'
 alias build='autoheader && aclocal && automake --add-missing --copy && autoconf'
 alias xterm='xterm -bg black -fg'
-alias gkrellm='/ms/dist/fsf/PROJ/gkrellm/prod/bin/gkrellm'
 alias so='. ~/.bashrc'
-alias runvnc='/ms/dist/fsf/PROJ/libvncserver/0.6/bin/x11vnc -X -rfbauth ~/.vnc/passwd -display :0.0 -many -bg'
 alias ltop='while (( 1 ))
 	do
 		sleep 1;
